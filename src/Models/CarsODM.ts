@@ -26,4 +26,8 @@ export default class CarsODM {
   public async getAll(): Promise<ICar[]> {
     return this.model.find();
   }
+
+  public async getById(id: string): Promise<ICar | null> {
+    return this.model.findById(id);
+  }
 }

@@ -22,4 +22,9 @@ export default class CarService {
     const allCars = cars.map((car) => this.createCarDomain(car as ICar));
     return allCars;
   }
+
+  public async getById(id: string) {
+    const car = await this.model.getById(id);
+    return this.createCarDomain(car);
+  }
 }
