@@ -3,6 +3,7 @@ import CarService from '../Services/CarService';
 import ICar from '../Interfaces/ICar';
 
 const CREATED = 201;
+const OK = 200;
 
 export default class CarController {
   private req: Request;
@@ -26,6 +27,7 @@ export default class CarController {
       doorsQty,
       seatsQty,
     } = this.req.body;
+
     const car: ICar = {
       id,
       model, 
@@ -38,5 +40,10 @@ export default class CarController {
     };
     const newCar = await this.service.createCar(car);
     return this.res.status(CREATED).json(newCar);
+  }
+
+  public async getAll() {
+    const cars = await this.service.getAll();
+    return this.res.status(OK).json(cars);
   }
 }
