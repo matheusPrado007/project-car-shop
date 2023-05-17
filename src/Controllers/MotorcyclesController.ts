@@ -60,4 +60,35 @@ export default class MotorcyclesController {
     }
     return this.res.status(OK).json(moto);
   }
+  public async updateById() {
+    const { id } = this.req.params;
+    const {
+      model, 
+      year, 
+      color, 
+      status, 
+      buyValue, 
+      category, 
+      engineCapacity,
+    } = this.req.body;
+
+    const motorcycle: IMotorcycles = {
+      id,
+      model, 
+      year, 
+      color, 
+      status, 
+      buyValue,
+      category,
+      engineCapacity,
+    };
+    if (!isValidObjectId(id)) {
+      return this.res.status(UNPROCESSABLE).json({ message: 'Invalid mongo id' });
+    }
+    const updateCar = await this.service.update(id, motorcycle);
+    if (!updateCar) {
+      return this.res.status(NOT_FOUND).json({ message: 'Motorcycle not found' });
+    }
+    return this.res.status(OK).json(motorcycle);
+  }
 }

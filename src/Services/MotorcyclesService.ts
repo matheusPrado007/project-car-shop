@@ -27,4 +27,9 @@ export default class MotorcyclesService {
     const moto = await this.model.getById(id);
     return this.createMotorDomain(moto);
   }
+
+  public async update(id: string, body: IMotorcycle) {
+    const moto = await this.model.update(id, body);
+    return this.createMotorDomain(moto);
+  }
 }

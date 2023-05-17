@@ -1,5 +1,6 @@
 import { Model, model, models, Schema, UpdateQuery } from 'mongoose';
 import ICar from '../Interfaces/ICar';
+import IMotorcycle from '../Interfaces/IMotorcycle';
 
 export default abstract class AbstractODM<T> {
   protected model: Model<T>;
@@ -24,10 +25,10 @@ export default abstract class AbstractODM<T> {
     return this.model.findById(id);
   }
 
-  public async update(id: string, car: ICar): Promise<T | null> {
+  public async update(id: string, car: ICar | IMotorcycle): Promise<T | null> {
     return this.model.findByIdAndUpdate(
       { _id: id },
-      { ...car } as UpdateQuery<ICar>,
+      { ...car } as UpdateQuery<ICar | IMotorcycle>,
       { new: true },
     );   
   }
