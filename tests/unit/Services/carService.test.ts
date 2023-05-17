@@ -33,4 +33,14 @@ describe('Testando a rota /cars', function () {
       expect(result).to.be.deep.equal(carOutput);
     });
   });
+  
+  describe('Testa PUT /cars/id', function () {
+    it('Testa se altera carro pelo id', async function () {
+      const update = sinon.stub(Model, 'findByIdAndUpdate').resolves(carOutput);
+  
+      await service.update('644cbf6d793fefd3bb95d9d8', carInput);
+  
+      expect(update.calledOnce).to.be.deep.equal(true);
+    });
+  });
 });
