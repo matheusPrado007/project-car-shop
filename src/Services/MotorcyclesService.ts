@@ -5,7 +5,7 @@ import IMotorcycle from '../Interfaces/IMotorcycle';
 export default class MotorcyclesService {
   private model: MotocyclesODM = new MotocyclesODM();
 
-  public createCarDomain(moto: IMotorcycle | null) {
+  public createMotorDomain(moto: IMotorcycle | null) {
     if (moto) {
       return new Motorcycles(moto);
     }
@@ -14,6 +14,17 @@ export default class MotorcyclesService {
 
   public async createMoto(moto: IMotorcycle) {
     const newMoto = await this.model.createCar(moto);
-    return this.createCarDomain(newMoto);
+    return this.createMotorDomain(newMoto);
+  }
+
+  public async getAll() {
+    const cars = await this.model.getAll();
+    const allCars = cars.map((moto) => this.createMotorDomain(moto as IMotorcycle));
+    return allCars;
+  }
+
+  public async getById(id: string) {
+    const moto = await this.model.getById(id);
+    return this.createMotorDomain(moto);
   }
 }

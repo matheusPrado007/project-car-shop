@@ -1,6 +1,6 @@
 import express from 'express';
 import carRoutes from './Routes/CarRoutes';
-import motorcyclesRoutes from './Routes/motorcyclesRoutes';
+import motorcyclesRoutes from './Routes/MotorcyclesRoutes';
 
 const app = express();
 app.use(express.json());

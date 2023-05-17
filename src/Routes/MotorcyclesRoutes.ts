@@ -8,4 +8,14 @@ motorcyclesRoutes.post(
   (req, res) => new MotorcyclesController(req, res).create(),
 );
 
+motorcyclesRoutes.get(
+  '/motorcycles',
+  (req, res) => new MotorcyclesController(req, res).getAll(),
+);
+
+motorcyclesRoutes.get(
+  '/motorcycles/:id',
+  (req, res) => new MotorcyclesController(req, res).getById(),
+);
+
 export default motorcyclesRoutes;
